@@ -30,8 +30,17 @@ const UserSchema = new Schema({
     },
     place: {
         type: String
-    }
+    },
+    password: {
+        type : String,
+        required: true
+    },
+    isOpen: {
+        type: Boolean,
+        required:true
+    },
+    
 
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = Business = mongoose.model('businessProviders', BusinessSchema);
