@@ -1,34 +1,50 @@
 const express = require('express');
-const  mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+const passport = require('passport');
+const path = require('path');
 
 const users = require('./routes/api/users');
-const serviceproviders = require('./routes/api/serviceproviders');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
+const service = require('./routes/api/service');
+const app = express();
 
-const app=express();
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-//Body parser middleware
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json())
-
-//dbconfig 
+// DB Config
 const db = require('./config/keys').mongoURI;
-//connetc to mongo db
+
+// Connect to MongoDB
 mongoose
-.connect(db)
-.then(()=> console.log('MongoDB connected'))
-.catch(err => console.log(err));
+  .connect(db)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
-//use routes
-app.use('/api/users',users);
-app.use('/api/serviceproviders',serviceproviders);
+// Passport middleware
+app.use(passport.initialize());
 
+// Passport Config
+require('./config/passport')(passport);
 
+// Use Routes
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
+app.use('/api/service', service);
 
-app.get('/',(req,res) => res.send('hello  world'));
+// Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
 
-const port =process.env.PORT || 5000;
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
-app.listen(port,() => console.log(`Server running on the port ${port}` ));
+const port = process.env.PORT || 5000;
 
+app.listen(port, () => console.log(`Server running on port ${port}`));
