@@ -7,9 +7,7 @@ class SideNavPage extends Component {
   render() {
 
     return( 
-      <Sidenav>
-        s
-         </Sidenav>
+     <div>f</div>
     )
   };
 }

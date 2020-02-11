@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import './App.css';
 import Header from './components/layout/Header';
 import Home from './components/views/Home/Home';
-import Routes from './routing/routes';
+import Routes from './components/routing/routes';
 import Footer from './components/layout/Footer';
-import SideNavPage from './components/layout/SideNavPage'
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -18,6 +17,7 @@ import './App.css';
 function App() {
 
   return (
+    <Provider store={store}>
       <Router>
         <Fragment>
           <Header />
@@ -28,6 +28,7 @@ function App() {
           <Footer/>
         </Fragment>
       </Router>
+      </Provider>
  
 
 

@@ -11,24 +11,23 @@ class Home extends Component {
 
     return (
       <div >
-      <MDBContainer fluid>
       <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
           <h1 className='x-large'>Container Content</h1>
           
           <div className='buttons'>
-            <Link to='#' className='btn btn-primary'>
+            <Link to='/register' className='btn btn-secondary'>
               Sign Up
             </Link>
-            <Link to='#' className='btn btn-light'>
+            <Link to='/login' className='btn btn-dark'>
               Login
             </Link>
           </div>
         </div>
       </div>
       </section>
-      </MDBContainer>
+      
       </div>
     );
 
