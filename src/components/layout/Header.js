@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 import { logout } from '../../actions/auth';
+import SideNav from '../layout/SideNav';
 
 
 
@@ -32,13 +33,16 @@ class Header extends Component {
         );
 
         return(
-            <nav className="navbar bg-dark">
+            
+            <nav className="navbar bg-dark animated fadeIn pt-1 text-center">
+                
                
                 <h1>
                     <Link disabled to = '/'>
                         <i className='fas fa-code' /> Logo
                     </Link>
                 </h1>
+                
 
                 <Fragment>
                     {authlinks}

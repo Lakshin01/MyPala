@@ -5,6 +5,7 @@ import Header from './components/layout/Header';
 import Home from './components/views/Home/Home';
 import Routes from './components/routing/routes';
 import Footer from './components/layout/Footer';
+import SideNav from './components/layout/SideNav';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -19,12 +20,13 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Fragment>
+        <Fragment >
+        <SideNav />
           <Header />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route component={Routes} />
-          </Switch>
+            <Route component={Routes} /> 
+          </Switch>       
           <Footer/>
         </Fragment>
       </Router>
